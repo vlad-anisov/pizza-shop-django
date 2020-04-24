@@ -1,0 +1,5 @@
+media/item
+core/migrations
+core/__pycache__
+pizza/__pycache__
+pizza/settings_local.py

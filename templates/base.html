@@ -1,0 +1,105 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{% block title %}Pizza{% endblock title %}</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light mt-3">
+        <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button"
+                data-toggle="collapse" data-target="#navbar6">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar6"> <a class="navbar-brand text-primary d-none d-md-block"
+                    href="/">
+                    <i class="fa d-inline fa-lg fa-circle"></i>
+                    <b>PIZZA</b>
+                </a>
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"> <a class="nav-link" href="{% url 'index' %}">Пиццы</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="{% url 'drinks' %}">Напитки</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="{% url 'order' %}">Оформить заказ</a></li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown mr-3"><button type="button" class="btn btn-primary dropdown-toggle"
+                            aria-haspopup="true" aria-expanded="false">Корзина</button>
+                        <div class="dropdown-menu dropdown-menu-right p-3 m-0" style="width: 20rem;">
+                            <div class="cart"></div>
+                        </div>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"> <a class="btn btn-outline-primary"
+                            href="{% url 'profile' %}">{{ user.username }}</a></li>
+                    {% else %}
+                    <li class="nav-item"> <a class="btn btn-outline-primary" href="{% url 'account_login' %}">Войти</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% if messages %}
+    <div class="pb-1">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="container">
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <div class="mt-5 mb-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center d-md-flex align-items-center"> <i
+                        class="d-block fa fa-stop-circle fa-2x mr-md-5 text-primary"></i>
+                    <ul class="nav mx-md-auto d-flex justify-content-center">
+                        <li class="nav-item"> <a class="nav-link" href="{% url 'index' %}">Пицца</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="{% url 'drinks' %}">Напитки</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="{% url 'order' %}">Оформить заказ</a></li>
+                    </ul>
+                    <div class="row">
+                        <div
+                            class="col-md-12 d-flex align-items-center justify-content-md-between justify-content-center my-2">
+                            <a href="#">
+                                <i class="d-block fa fa-facebook-official text-muted fa-lg mx-2"></i>
+                            </a> <a href="#">
+                                <i class="d-block fa fa-instagram text-muted fa-lg mx-2"></i>
+                            </a> <a href="#">
+                                <i class="d-block fa fa-twitter text-muted fa-lg ml-2"></i>
+                            </a> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="mt-2 mb-0">© Pizza 2020. Лучшая пицца в твоем городе</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/cart.js' %}"></script>
+</body>
+
+</html>

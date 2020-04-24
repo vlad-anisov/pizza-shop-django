@@ -1,0 +1,45 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Pizza{% endblock title %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="row pt-3 d-flex justify-content-center">
+    <h2>Профиль</h2>
+</div>
+
+<div class="row pt-3 d-flex justify-content-center">
+
+    <div class="col-sm-4 mb-3">
+        <form method="POST">
+            {% csrf_token %}
+            {{form|crispy}}
+            <a href="{% url 'account_change_password' %}">Изменить пароль</a><br>
+            <br>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <a class="pl-4" href="{% url 'account_logout' %}">Выйти</a>
+
+        </form>
+    </div>
+    <div class="col-sm-4">
+        <h3 class="pb-2">Ваши заказы</h3>
+        {% for order in orders reversed %}
+        <div class="mb-4 p-3 border border-primary rounded" style="border-width:2px!important">
+            {{ order.order_time }}<br>
+
+            {{order.order_items.all|join:", "}}<br>
+
+            {% if order.ordered %}
+            <div class="font-weight-bolder">Заказ доставлен</div>
+            {% else %}
+            <div class="font-weight-bolder">Заказ в пути</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
