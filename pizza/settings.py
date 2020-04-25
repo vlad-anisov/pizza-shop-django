@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'core',
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'corsheaders',
     'storages',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -195,12 +197,12 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-AWS_ACCESS_KEY_ID = 'AKIAIGRTFUBQLIZGDD5A'
-AWS_SECRET_ACCESS_KEY = 'G+vVgXoKaVxZLYfyx9ijTuhzxRAY+rRH/A6w/fHf'
-AWS_STORAGE_BUCKET_NAME
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'YOUR_CLOUD_NAME',
+    'API_KEY': 'YOUR_API_KEY',
+    'API_SECRET': 'YOUR_API_SECRET',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 try:
     from .settings_local import *
