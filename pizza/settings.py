@@ -194,7 +194,9 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 
+DROPBOX_OAUTH2_TOKEN = 'KMVFRSVRAUAAAAAAAAAAH62FRCVdOSdz2-IuF6iNs45uVDvUAr7UxK860hQH-rHF'
 
 try:
     from .settings_local import *
