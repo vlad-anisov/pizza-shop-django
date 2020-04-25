@@ -65,6 +65,8 @@ MIDDLEWARE = [
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+STATIC_TMP = os.path.join (BASE_DIR, 'static')
+
 ROOT_URLCONF = 'pizza.urls'
 
 TEMPLATES = [
