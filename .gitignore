@@ -1,6 +1,4 @@
 media/item
-core/migrations/*
-!core/migrations/__init__.py
 core/__pycache__
 pizza/__pycache__
 db.sqlite3
