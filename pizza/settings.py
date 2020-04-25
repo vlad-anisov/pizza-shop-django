@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'rest_polymorphic',
     'crispy_forms',
     'corsheaders',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -194,9 +195,12 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-DROPBOX_OAUTH2_TOKEN = 'KMVFRSVRAUAAAAAAAAAAH62FRCVdOSdz2-IuF6iNs45uVDvUAr7UxK860hQH-rHF'
+AWS_ACCESS_KEY_ID = 'AKIAIGRTFUBQLIZGDD5A'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME
 
 try:
     from .settings_local import *
