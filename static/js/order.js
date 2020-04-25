@@ -11,7 +11,7 @@ function setModal(text) {
 
 
 function order(street, house, apartment, email, order_time) {
-    fetch('http://127.0.0.1:8000/order', {
+    fetch('order', {
         method: "post",
         credentials: "same-origin",
         headers: {

@@ -27,7 +27,7 @@ function setModal(number){
 
 
 function modal(button) {
-    fetch(`http://127.0.0.1:8000/api/pizza/${button.id}`)
+    fetch(`api/pizza/${button.id}`)
         .then(response => response.json()).then(pizza => {
             items = pizza;
             document.getElementById('modalSelect').innerHTML = `

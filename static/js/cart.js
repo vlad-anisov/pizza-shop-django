@@ -86,7 +86,7 @@ function setCart(newCart) {
 
 
 function getItems() {
-    fetch('http://127.0.0.1:8000/api/cart').then(response => response.json()).then(cart => setCart(cart))
+    fetch('api/cart').then(response => response.json()).then(cart => setCart(cart))
 }
 
 
@@ -95,7 +95,7 @@ function addItem(id) {
     if (item) {
         updateItem(id, item.quantity + 1)
     } else {
-        fetch(`http://127.0.0.1:8000/api/cart/${id}`, {
+        fetch(`api/cart/${id}`, {
             method: "post",
             credentials: "same-origin",
             headers: {
@@ -112,7 +112,7 @@ function updateItem(id, quantity) {
         removeItem(id)
     else {
         const order_item = cart.find(order_item => order_item.item.id == id)
-        fetch(`http://127.0.0.1:8000/api/cart/${id}`, {
+        fetch(`api/cart/${id}`, {
             method: "put",
             credentials: "same-origin",
             headers: {
@@ -137,7 +137,7 @@ function updateItem(id, quantity) {
 
 
 function removeItem(id) {
-    fetch(`http://127.0.0.1:8000/api/cart/${id}`, {
+    fetch(`api/cart/${id}`, {
         method: "delete",
         credentials: "same-origin",
         headers: {
