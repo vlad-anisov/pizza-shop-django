@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 
 import os
-import dj_database_url
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -28,7 +27,7 @@ SECRET_KEY = ''
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*', 'https://pizza-shop-django.herokuapp.com/']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*',]
 
 
 # Application definition
@@ -51,13 +50,9 @@ INSTALLED_APPS = [
     'rest_polymorphic',
     'crispy_forms',
     'corsheaders',
-    'storages',
-    'cloudinary',
-    'catalog',
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -68,8 +63,6 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-
-STATIC_TMP = os.path.join (BASE_DIR, 'static')
 
 ROOT_URLCONF = 'pizza.urls'
 
@@ -102,8 +95,6 @@ DATABASES = {
     }
 }
 
-prod_db  =  dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -153,9 +144,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
 
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -198,12 +186,6 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'YOUR_CLOUD_NAME',
-    'API_KEY': 'YOUR_API_KEY',
-    'API_SECRET': 'YOUR_API_SECRET',
-}
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 try:
     from .settings_local import *
