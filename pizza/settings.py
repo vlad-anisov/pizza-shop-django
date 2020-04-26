@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.staticfiles',
     'cloudinary',
+    'catalog',
 ]
 
 MIDDLEWARE = [
