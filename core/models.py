@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from polymorphic.models import PolymorphicModel
+from cloudinary.models import CloudinaryField
+from django.db.models.signals import pre_delete
+import cloudinary
+from django.dispatch import receiver
 
 payment_CHOICES = (
     ('H', 'Cash'),
@@ -23,12 +27,15 @@ class Item(PolymorphicModel):
     title = models.CharField(max_length=50)
     description = models.TextField()
     slug = models.SlugField()
-    photo = models.ImageField(
-        upload_to='item', null=True, blank=True)
+    photo = CloudinaryField('photo')
     price = models.FloatField()
 
     def __str__(self):
         return self.title
+
+@receiver(pre_delete, sender=Item)
+def photo_delete(sender, instance, **kwargs):
+    cloudinary.uploader.destroy(instance.photo.public_id)
 
 
 class Drink(Item):

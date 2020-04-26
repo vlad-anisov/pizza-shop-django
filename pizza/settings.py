@@ -22,10 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = '1614@6+1as7i!l4doar2hphyohz3scp4*msuo8^$5q64*l1va4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*',]
 
@@ -33,13 +33,10 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*',]
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',
-    'django.contrib.staticfiles',
     'django.contrib.sites',
     'core',
     'allauth',
@@ -50,6 +47,9 @@ INSTALLED_APPS = [
     'rest_polymorphic',
     'crispy_forms',
     'corsheaders',
+    'django.contrib.admin',
+    'django.contrib.staticfiles',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -135,13 +135,42 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+
+MEDIA_URL = '/media/'
+
+
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+
 STATIC_URL = '/static/'
 
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+STATICFILES_DIRS = (
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+os.path.join(PROJECT_ROOT, 'assets'),
+
+)
+
+CLOUDINARY = {
+  'cloud_name': 'anisov',
+  'api_key': '976985248854682',
+  'api_secret': '72xFscTDsIypqW7VreOEtHwUsvE',
+}
+
+# CLOUDINARY_URL=cloudinary://976985248854682:72xFscTDsIypqW7VreOEtHwUsvE@anisov?api_proxy=proxy.server:3128
+
+
+
+STATICFILES_FINDERS = (
+
+'django.contrib.staticfiles.finders.FileSystemFinder',
+
+'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
+)
 
 
 AUTHENTICATION_BACKENDS = (
@@ -153,9 +182,6 @@ SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
 
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -164,8 +190,8 @@ REST_FRAMEWORK = {
 }
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'anisoffgo@gmail.com'
+EMAIL_HOST_PASSWORD = 'Wlad080920000041191337'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
