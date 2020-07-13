@@ -27,7 +27,7 @@ class Item(PolymorphicModel):
     title = models.CharField(max_length=50)
     description = models.TextField()
     slug = models.SlugField()
-    photo = CloudinaryField('photo')
+    photo = models.ImageField(upload_to='media/item/', blank=True, null=True)
     price = models.FloatField()
 
     def __str__(self):
