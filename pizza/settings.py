@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'corsheaders',
     'django.contrib.admin',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -204,5 +206,12 @@ try:
     from .settings_local import *
 except ImportError:
     pass
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hqb1j8btk',
+    'API_KEY': '162558631883164',
+    'API_SECRET': '0w6sAibY1YkKpTN4WjmTP2CI3cM',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 django_heroku.settings(locals())
