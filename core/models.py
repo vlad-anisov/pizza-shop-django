@@ -33,10 +33,6 @@ class Item(PolymorphicModel):
     def __str__(self):
         return self.title
 
-@receiver(pre_delete, sender=Item)
-def photo_delete(sender, instance, **kwargs):
-    cloudinary.uploader.destroy(instance.photo.public_id)
-
 
 class Drink(Item):
 

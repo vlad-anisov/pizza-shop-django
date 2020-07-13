@@ -49,8 +49,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.staticfiles',
-    'cloudinary',
-    'catalog',
 ]
 
 MIDDLEWARE = [
@@ -149,26 +147,13 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATIC_URL = '/static/'
 
 
-STATICFILES_DIRS = (
-
-os.path.join(PROJECT_ROOT, 'assets'),
-
-)
-
-CLOUDINARY = {
-  'cloud_name': 'anisov',
-  'api_key': '976985248854682',
-  'api_secret': '72xFscTDsIypqW7VreOEtHwUsvE',
-}
-
-# CLOUDINARY_URL=cloudinary://976985248854682:72xFscTDsIypqW7VreOEtHwUsvE@anisov?api_proxy=proxy.server:3128
-
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 STATICFILES_FINDERS = (
 
 'django.contrib.staticfiles.finders.FileSystemFinder',
-
 'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 
 )
