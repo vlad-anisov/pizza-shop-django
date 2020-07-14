@@ -88,10 +88,10 @@ class CartView(APIView):
 
 class OrderView(APIView):
 
-    def send_message(self, user):
-        message = f'Заказ принят. Статус заказа можно посмотреть в своём профиле'\
-            f'Логин: {user.username}'\
-            f'Пароль: {user.password}'
+    def send_message(self, user, password):
+        message = f'Заказ принят. Статус заказа можно посмотреть в своём профиле. '\
+            f'Логин: {user.username} '\
+            f'Пароль: {password}'
         send_mail('Pizza', message, settings.EMAIL_HOST_USER,
                   [user.email], fail_silently=False)
 
@@ -100,7 +100,7 @@ class OrderView(APIView):
         user = User.objects.create_user(
             username=email, email=email, password=password)
         user.save()
-        return user
+        return user, password
 
     def order_items(self):
         order_items = []
@@ -158,9 +158,9 @@ class OrderView(APIView):
         if User.objects.filter(email=request.data['email']):
             return Response('Пользователь с таким email уже существует. Пожалуйста войдите в свой аккаунт или измените email')
 
-        user = self.create_user(email=request.data['email'])
+        user, password = self.create_user(email=request.data['email'])
         self.order(user, address)
-        self.send_message(user)
+        self.send_message(user, password)
         return Response('Заказ принят. Статус заказа можно посмотреть в своём профиле. Данные для входа в аккаунт мы отпраивли вам на email')
 
 
