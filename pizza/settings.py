@@ -179,6 +179,8 @@ REST_FRAMEWORK = {
 }
 
 EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'anisoffgo@gmail.com'
+EMAIL_HOST_PASSWORD = 'Wlad080920000041191337'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -205,6 +207,11 @@ try:
 except ImportError:
     pass
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hqb1j8btk',
+    'API_KEY': '162558631883164',
+    'API_SECRET': '0w6sAibY1YkKpTN4WjmTP2CI3cM',
+}
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 django_heroku.settings(locals())
